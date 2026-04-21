@@ -1,38 +1,54 @@
-# hello-vue-developer
+# Hello Vue Developer (hello-vue-developer)
 
-This template should help get you started developing with Vue 3 in Vite.
+## Overview
+A Vue application illustrating core concepts like components, props, and events within a domain-driven design.
 
-## Recommended IDE Setup
+**Author**: Web Application Development Team
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Purpose
 
-## Recommended Browser Setup
+This project showcases:
+- Component-based architecture with the Composition API.
+- Event-driven communication (e.g., registration events).
+- Reactive state management.
+- A Greetings bounded context with a clear model and components.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Features
 
-## Customize configuration
+- **Register**: Developers provide first and last names to register as Vue developers.
+- **Greet**: Welcomes the last registered developer with their full name (appears only after registration).
+- **Track**: Counts valid registrations for stakeholders (ignores invalid inputs).
+- **Defer**: Allows developers to skip registration and try again later.
+- **Validation**: Rejects empty or spaces-only names with feedback.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## User Stories
+Detailed requirements for the app’s functionality, including registration, greeting, tracking, and deferral, are described in [docs/user-stories.md](docs/user-stories.md).
 
-## Project Setup
+## Class Diagram
+A PlantUML diagram illustrating the app’s structure, including the Developer entity and Vue components in the Greetings bounded context, is available in [docs/class-diagram.puml](docs/class-diagram.puml).
+Following you can find a preview of the diagram:
 
-```sh
-npm install
-```
+![class-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/upc-pre-202610-1asi0730-sandbox/hello-vue-developer/refs/heads/master/docs/class-diagram.puml?token=GHSAT0AAAAAADVFVJLAW5HV6R4RQ2RM7QXQ2O4NHRQ)
 
-### Compile and Hot-Reload for Development
 
-```sh
-npm run dev
-```
+## Setup
 
-### Compile and Minify for Production
+### Prerequisites
+- Node.js (v22 or higher)
+- npm (v11 or higher)
 
-```sh
-npm run build
-```
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd hello-vue-developer
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Start the development server:
+    ```bash
+    npm run dev
+    ```
+4. Open the app in your browser (typically [http://localhost:5173](http://localhost:5173)).
