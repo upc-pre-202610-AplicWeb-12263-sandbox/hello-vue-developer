@@ -25,11 +25,10 @@ This project showcases:
 Detailed requirements for the app’s functionality, including registration, greeting, tracking, and deferral, are described in [docs/user-stories.md](docs/user-stories.md).
 
 ## Class Diagram
-A PlantUML diagram illustrating the app’s structure, including the Developer entity and Vue components in the Greetings bounded context, is available in [docs/class-diagram.puml](docs/class-diagram.puml).
-Following you can find a preview of the diagram:
+A PlantUML file to illustrate the app’s structure, including the Developer entity and Vue components in the Greetings bounded context, is available in [docs/class-diagram.puml](docs/class-diagram.puml).
+The following is the corresponding class diagram:
 
-![class-diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/upc-pre-202610-1asi0730-sandbox/hello-vue-developer/refs/heads/master/docs/class-diagram.puml?token=GHSAT0AAAAAADVFVJLAW5HV6R4RQ2RM7QXQ2O4NHRQ)
-
+<img src="./docs/class-diagram.png" alt="Class diagram" width="600">
 
 ## Setup
 
