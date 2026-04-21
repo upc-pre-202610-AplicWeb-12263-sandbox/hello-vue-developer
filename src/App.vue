@@ -1,47 +1,96 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script lang="js" setup>
+/**
+ * App component
+ *
+ * @component
+ * @name app
+ * @description
+ * The main application part. Manages developer registration, greeting, and count.
+ * Handles events from DeveloperRegistration and updates state accordingly.
+ *
+ * @example
+ * <app />
+ */
+import DeveloperRegistration from "./greetings/presentation/components/developer-registration.vue";
+import DeveloperGreeting from "./greetings/presentation/components/developer-greeting.vue";
+import DeveloperCountShow from "./greetings/presentation/components/developer-count-show.vue";
+import {Developer} from "./greetings/domain/model/developer.entity.js";
+import {ref} from "vue";
+
+/**
+ * The first name of the registered developer.
+ * @type {import('vue').Ref<string>}
+ */
+const firstName = ref("");
+
+/**
+ * The last name of the registered developer.
+ * @type {import('vue').Ref<string>}
+ */
+const lastName = ref("");
+
+/**
+ * The number of developers registered (excluding unknown developers).
+ * @type {import('vue').Ref<number>}
+ */
+const developerCount = ref(0);
+
+/**
+ * Whether a developer has registered.
+ * @type {import('vue').Ref<boolean>}
+ */
+const hasRegistered = ref(false);
+
+/**
+ * Handles the 'developer-registered' event. Updates developer info and count.
+ * @param {{ firstName: string, lastName: string }} developer - The registered developer's info.
+ * @returns {void}
+ */
+function updateRegisteredDeveloperInfo(developer) {
+  firstName.value = developer.firstName;
+  lastName.value = developer.lastName;
+  hasRegistered.value = true;
+  console.log("Developer registered: ", developer);
+  updateDeveloperCount(developer);
+}
+
+/**
+ * Handles the 'registration-deferred' event. Resets developer info.
+ * @returns {void}
+ */
+function resetRegisteredDeveloperInfo() {
+  firstName.value = "";
+  lastName.value = "";
+  hasRegistered.value = false;
+  console.log("Registration deferred");
+}
+
+/**
+ * Increments the developer count if the developer is not 'Unknown'.
+ * @param {{ firstName: string, lastName: string }} developer - The developer to check.
+ * @returns {void}
+ */
+function updateDeveloperCount(developer) {
+  const dev = new Developer(developer.firstName, developer.lastName);
+  if (dev.fullName !== "Unknown") {
+    developerCount.value++;
+  }
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>Hello Vue Developer Application</h1>
+  <developer-registration
+      @developer-registered="updateRegisteredDeveloperInfo"
+      @registration-deferred="resetRegisteredDeveloperInfo"
+  />
+  <developer-greeting
+      v-if="hasRegistered"
+      :first-name="firstName"
+      :last-name="lastName"
+  />
+  <developer-count-show :developer-count="developerCount"/>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
+<style>
 </style>
